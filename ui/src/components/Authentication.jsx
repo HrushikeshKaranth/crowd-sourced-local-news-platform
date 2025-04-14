@@ -28,7 +28,9 @@ function Authentication() {
               <div className='fill-section'>
                 <span className='auth-header'>Fill Details</span>
                 <input type="text" name='username' placeholder='Enter Username' value={username} onChange={(e) => { setUsername(e.target.value) }} />
+                <input type="text" name='email' placeholder='Enter Email' value={username} onChange={(e) => { setUsername(e.target.value) }} />
                 <input type="password" name='password' placeholder='Enter Password' value={password} onChange={(e) => { setPassword(e.target.value) }} />
+                <input type="password" name='password' placeholder='Confirm Password' value={password} onChange={(e) => { setPassword(e.target.value) }} />
                 <button className='l-button'>Register</button>
               </div>
           }

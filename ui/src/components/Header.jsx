@@ -1,9 +1,10 @@
-import React from 'react'
+import React from 'react';
+import { Link } from "react-router-dom";
 
 export default function Header() {
     return (
         <div className='header'>
-            Crowd Sourced Local News Platform
+            <Link to='/'>Crowd Sourced Local News Platform</Link>
         </div>
     )
 }

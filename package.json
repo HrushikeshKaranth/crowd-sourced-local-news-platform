@@ -1,0 +1,27 @@
+{
+  "name": "crowd-sourced-local-news-platform",
+  "version": "1.0.0",
+  "description": "Crowd Sourced Local News Platform\r ## Requirements needed to run this project 👇\r + Node JS Version 22 or Greater - (React JS)\r ## Steps to run this project 👍\r + Clone this repository!\r ```\r npm install\r ```\r ```\r npm start\r ```",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HrushikeshKaranth/crowd-sourced-local-news-platform.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HrushikeshKaranth/crowd-sourced-local-news-platform/issues"
+  },
+  "homepage": "https://github.com/HrushikeshKaranth/crowd-sourced-local-news-platform#readme",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "mongodb": "^6.15.0",
+    "mongoose": "^8.13.2",
+    "morgan": "^1.10.0"
+  }
+}
