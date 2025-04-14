@@ -1,0 +1,5 @@
+home
+home - login - userhome
+home - login - adminhome
+home - register - login - userhome
+userhome - uploadnews - userhome

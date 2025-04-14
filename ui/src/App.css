@@ -1,13 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+
+:root{
+  --mainbg:#845EC2;
+  --subbg:#B39CD0;
+  --light:#FBEAFF;
+  --btn:#00C9A7;
+  --text:#3f3f3f;
+  --errmsg:#C34A36;
+  --successmsg:#49887d;
+  --textcolor:rgb(90, 90, 90)
+}
 .App {
   text-align: center;
   /* font-family: "Nunito Sans", sans-serif; */
   font-optical-sizing: auto;
   font-weight: 500;
   font-style: normal;
-  color: rgb(90, 90, 90);
+  color: var(--textcolor);
 }
 
 * {
@@ -15,7 +26,7 @@
   padding: 0.2rem;
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
-  color: rgb(90, 90, 90);
+  color: var(--textcolor);
   transition: 0.1s;
   /* font-family: "Poppins", sans-serif; */
   /* font-family: "Nunito Sans", sans-serif; */
@@ -28,7 +39,7 @@
   align-items: center;
   justify-content: center;
   font-size: 4rem;
-  color: rgb(90, 90, 90);
+  color: var(--textcolor);
   border: .1rem solid rgb(100, 100, 240);
   /* background-color: black; */
   width: 100%;
@@ -166,4 +177,69 @@ textarea:focus{
 }
 .newsDate{
   font-weight: 500;
+}
+
+.auth-section{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5rem;
+}
+.subauth-section{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 30%;
+}
+
+.auth-toggle-section{
+  border: .1rem solid rgb(100, 100, 240);
+  padding: .5rem;
+  width: 100%;
+}
+
+.fill-section{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.l-button{
+  /* font-size: 1.2rem; */
+  /* height: 5rem; */
+  border: .1rem solid rgb(100, 100, 240);
+  text-align: center;
+  width: 30%;
+}
+.l-button:hover{
+  cursor: pointer;
+  border-left: .5rem solid rgb(100, 100, 240);
+  border-right: .5rem solid rgb(100, 100, 240);
+  transition: 0.1s;
+}
+
+.auth-button-section{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: .1rem solid rgb(100, 100, 240);
+  width: 100%;
+}
+.auth-toggle-buttons{
+  border: none ;
+  width: 100%;
+  cursor: pointer;
+
+}
+
+.rm-button{
+  background-color: white;
+}
+.button-selected{
+  background-color: rgb(100, 100, 240);
+  color: white;
 }
