@@ -21,12 +21,16 @@ const router = express.Router();
 //     .get(runConnectionTest);
 
 const {
-    registerUser
+    registerUser,
+    loginUser
 } = require('../controllers/controllers')
 
 router
     .route('/register')
     .post(registerUser)
 
+router
+    .route('/login')
+    .post(loginUser)
 
 module.exports = router;

@@ -1,8 +1,14 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import Header from './Header'
 import axios from 'axios'
+import { GlobalContext } from '../context/GlobalState';
+import { useNavigate } from 'react-router-dom';
 
 function Authentication() {
+
+  const { loggedIn } = useContext(GlobalContext);
+  let nav = useNavigate();
+
   const [username, setUsername] = useState()
   const [password, setPassword] = useState()
 
@@ -30,6 +36,35 @@ function Authentication() {
   const usernameformat = /^[a-z0-9_.]+$/;
   //----- 
 
+  // user login
+  function login(){
+    const loginDetails={
+      username, password
+    }
+    const config = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+    axios.post('/api/v1/login', loginDetails, config)
+    .then((res)=>{
+      console.log(res);
+      alert('Login Successful 🤗!');
+      // const user = res.data.data;
+      loggedIn(res.data.data);
+      nav('/');
+      // const userDetails={
+      //   username: res.data.data.username
+      //   userid: res.data.data._id
+      //   usertype: res.data.data.usertype
+      // }
+    })
+    .catch((err)=>{
+      console.log(err);
+      alert(err.response.data.error)
+    })
+  }
+  // register user
   function registerUser() {
     if (register.username === "" | register.email === "" | register.password === "" | register.cpassword === "") {
       alert("Fill all the details! 🤨");
@@ -57,7 +92,8 @@ function Authentication() {
         })
         .catch((err) => {
           console.log(err);
-          alert("Unable to Register User at this time 😢");
+          alert(err.response.data.error)
+          // alert("Unable to Register User at this time 😢");
         })
     }
   }
@@ -82,7 +118,7 @@ function Authentication() {
                 <span className='auth-header'>Enter Login Details</span>
                 <input type="text" name='username' placeholder='Enter Username' value={username} onChange={(e) => { setUsername(e.target.value) }} />
                 <input type="password" name='password' placeholder='Enter Password' value={password} onChange={(e) => { setPassword(e.target.value) }} />
-                <button className='l-button'>Login</button>
+                <button className='l-button' onClick={login}>Login</button>
               </div >
               :
               <div className='fill-section'>

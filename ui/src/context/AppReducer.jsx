@@ -11,15 +11,21 @@ export default (state, action ) => {
                 ...state,
                 loginToggle: true,
             }
-        case 'IS_LOGGED_IN':
+        case 'LOGGED_IN':
             return{
                 ...state,
                 isLoggedIn: true,
+                user:action.payload,
+                username: action.payload.username,
+                userid: action.payload._id
             }
-        case 'LOGOUT':
+        case 'LOGGED_OUT':
             return{
                 ...state,
                 isLoggedIn: false,
+                user:{},
+                username: "",
+                userid: ""
             }
         case 'DELETE_TRANSACTION':
             return {

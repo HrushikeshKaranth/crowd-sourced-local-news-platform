@@ -101,6 +101,51 @@ exports.runConnectionTest = async (req, res, next) => {
     }
 }
 
+// @desc login User
+// @route POST /api/v1/login
+// @access Public
+exports.loginUser = async (req, res, next) => {
+    try {
+        const { username, password } = req.body;
+
+        const userExists = await Users.find({ "username": username })
+        console.log(userExists);
+        
+        if(userExists[0] == null){
+            return res.status(400).json({
+                success: false,
+                error: 'Username doesnot exists 😢!'
+            })
+        }
+        else if(userExists[0].password != password){
+            return res.status(400).json({
+                success: false,
+                error: 'Wrong password 😢!'
+            })
+        }
+        else{
+            return res.status(200).json({
+                success: true,
+                data: userExists[0]
+            })
+        }
+    } catch (error) {
+        if (error.name === 'ValidationError') {
+            const messages = Object.values(error.errors).map(val => val.message);
+            return res.status(400).json({
+                success: false,
+                error: messages
+            })
+        }
+        else {
+            return res.status(500).json({
+                success: false,
+                error: 'Server error'
+            })
+        }
+    }
+}
+
 // @desc Register User
 // @route POST /api/v1/
 // @access Public
@@ -108,6 +153,24 @@ exports.registerUser = async (req, res, next) => {
     try {
         const { username, email, password, usertype } = req.body;
 
+        const userExists = await Users.find({ "username": username })
+        console.log(userExists);
+        
+        if(userExists[0] != null){
+            return res.status(400).json({
+                success: false,
+                error: 'Username already exists 😢!'
+            })
+        }
+        const emailExists = await Users.find({ "email": email })
+        console.log(emailExists);
+        
+        if(emailExists[0] != null){
+            return res.status(400).json({
+                success: false,
+                error: 'Email already exists 😢!'
+            })
+        }
         // const transaction = await Transaction.create(req.body);
         const user = await Users.create(req.body);
 

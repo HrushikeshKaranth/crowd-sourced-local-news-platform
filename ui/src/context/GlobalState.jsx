@@ -6,9 +6,10 @@ const initialState = {
     transactions: [],
     error: null,
     loading: true,
-    loginToggle: false,
     isLoggedIn: false,
-    username:"user123"
+    user:{},
+    username:"user123",
+    userid:''
 }
 
 // Create context
@@ -19,6 +20,33 @@ export const GlobalProvider = ({children}) => {
     const [state, dispatch] = useReducer(AppReducer, initialState);
 
     // Actions
+    async function loggedIn(data){
+        try {
+            console.log(data);
+            dispatch({
+                type: 'LOGGED_IN',
+                payload: data
+            })
+        } catch (error) {
+            dispatch({
+                type: 'TRANSACTIONS_ERROR',
+                payload: error.response.data.error
+            });
+        }
+    }
+    // Actions
+    async function loggedOut(){
+        try {
+            dispatch({
+                type: 'LOGGED_OUT'
+            })
+        } catch (error) {
+            dispatch({
+                type: 'TRANSACTIONS_ERROR',
+                payload: error.response.data.error
+            });
+        }
+    }
     async function getTransactions(){
         try {
             const res = await axios.get('/api/v1/transactions/');
@@ -101,13 +129,15 @@ export const GlobalProvider = ({children}) => {
             transactions: state.transactions,
             error: state.error,
             loading: state.loading,
-            loginToggle: state.loginToggle,
             isLoggedIn: state.isLoggedIn,
             username:state.username,
+            userid:state.userid,
             getTransactions,
             deleteTransaction,
             addTransaction,
-            registerUser
+            registerUser,
+            loggedIn,
+            loggedOut
         }}>
             {children}
         </GlobalContext.Provider>

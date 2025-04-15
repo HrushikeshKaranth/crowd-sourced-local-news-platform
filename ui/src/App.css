@@ -53,6 +53,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+}
+.logout-button{
+  border: .1rem solid rgb(100, 100, 240);
+  cursor: pointer;
+}
+.logout-button:hover{
+  color:white;
+  background-color: #6464f0;
 }
 .split-section{
   display: flex;
