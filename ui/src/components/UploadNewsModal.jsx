@@ -25,8 +25,8 @@ export default function UploadNewsModal(props) {
                     <input type="text" />
                 </div>
                 <div>
-                    <div>Screenshots:</div> 
-                    <input type="file" accept="image/*" />
+                    <div>Image Link:</div> 
+                    <input type="text" />
                 </div>
                 <div className='modal-button-section'>
                     <button className='modal-button' type="button" >

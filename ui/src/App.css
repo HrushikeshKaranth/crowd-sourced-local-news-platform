@@ -13,12 +13,13 @@
   --textcolor:rgb(90, 90, 90)
 }
 .App {
-  text-align: center;
+  /* text-align: center; */
   /* font-family: "Nunito Sans", sans-serif; */
   font-optical-sizing: auto;
   font-weight: 500;
   font-style: normal;
   color: var(--textcolor);
+  /* background-color: #6464f025; */
 }
 
 * {
@@ -41,7 +42,7 @@
   justify-content: center;
   font-size: 4rem;
   color: var(--textcolor);
-  border: .1rem solid rgb(100, 100, 240);
+  border: .1rem solid #6464f0;
   /* background-color: black; */
   width: 100%;
   height: 5rem;
@@ -67,6 +68,7 @@
   display: flex;
   align-items: center;
   gap: .5rem;
+  background-color: #6464f023;
 }
 
 .section{
@@ -95,11 +97,13 @@
   left: 0;
   width:100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.6);
+  /* background: rgba(0, 0, 0, 0.6); */
+  background-color: #6464f023;
 }
 .modal-main {
   position:fixed;
-  background: white;
+  /* background: white; */
+  background-color: #6464f023;
   width: 40%;
   height: auto;
   top:50%;
@@ -164,6 +168,7 @@ textarea:focus{
   gap: 1rem;
   justify-content:space-evenly;
   margin-top: 1rem;
+  background-color: #6464f023;
 }
 
 .newsList{
@@ -194,8 +199,10 @@ textarea:focus{
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
   gap: 5rem;
+  background-color: #6464f023;
+  height: 97vh;
 }
 .subauth-section{
   display: flex;
