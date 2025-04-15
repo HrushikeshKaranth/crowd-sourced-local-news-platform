@@ -72,6 +72,29 @@ export const GlobalProvider = ({children}) => {
             });
         }
     }
+
+    async function registerUser(userDetails){
+        const config = {
+            headers: {
+                'Content-Type':'application/json'
+            }
+        }
+
+        try {
+            await axios.post('/api/v1/register', userDetails, config)
+            .then((res)=>{
+                console.log(res);
+                
+            })
+            .catch((err)=>{
+                console.log(err);
+                
+            })
+              
+        } catch (error) {
+            console.log(error);
+        }
+    }
     
     return(
         <GlobalContext.Provider value ={{
@@ -83,7 +106,8 @@ export const GlobalProvider = ({children}) => {
             username:state.username,
             getTransactions,
             deleteTransaction,
-            addTransaction
+            addTransaction,
+            registerUser
         }}>
             {children}
         </GlobalContext.Provider>

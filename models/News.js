@@ -6,6 +6,10 @@ const NewsSchema = new mongoose.Schema({
         trim: true,
         required: [true, 'Please add some text']
     },
+    userid:{
+        type: Number,
+        required: [true, 'Please add id']
+    },
     title:{
         type: String,
         trim: true,
@@ -17,6 +21,11 @@ const NewsSchema = new mongoose.Schema({
         required: [true, 'Please add some text']
     },
     imagelink:{
+        type: String,
+        trim: true,
+        required: [true, 'Please add some text']
+    },
+    adminapproved:{
         type: String,
         trim: true,
         required: [true, 'Please add some text']

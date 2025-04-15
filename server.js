@@ -12,7 +12,7 @@ dotenv.config({path: './config/config.env'})
 connectDB();
 
 //import routes
-const transactions = require('./routes/transactions');
+const routes = require('./routes/routes');
 
 const app = express();
 
@@ -24,7 +24,7 @@ if(process.env.NODE_ENV === 'development'){
 }
 
 //default root url
-app.use('/api/v1/transactions', transactions)
+app.use('/api/v1/', routes)
 
 //use build for production
 if(process.env.NODE_ENV === 'production'){

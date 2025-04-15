@@ -4,7 +4,11 @@
   "description": "Crowd Sourced Local News Platform\r ## Requirements needed to run this project 👇\r + Node JS Version 22 or Greater - (React JS)\r ## Steps to run this project 👍\r + Clone this repository!\r ```\r npm install\r ```\r ```\r npm start\r ```",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server",
+    "server": "nodemon server",
+    "client": "npm start --prefix ui",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "repository": {
     "type": "git",
@@ -23,5 +27,9 @@
     "mongodb": "^6.15.0",
     "mongoose": "^8.13.2",
     "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "nodemon": "^3.1.9"
   }
 }
