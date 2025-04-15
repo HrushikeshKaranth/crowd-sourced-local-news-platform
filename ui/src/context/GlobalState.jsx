@@ -23,6 +23,8 @@ export const GlobalProvider = ({children}) => {
     async function loggedIn(data){
         try {
             console.log(data);
+            localStorage.setItem("user", JSON.stringify(data));
+            localStorage.setItem("loggedIn", true);
             dispatch({
                 type: 'LOGGED_IN',
                 payload: data
@@ -37,6 +39,9 @@ export const GlobalProvider = ({children}) => {
     // Actions
     async function loggedOut(){
         try {
+            localStorage.removeItem("user");
+            // localStorage.clear();
+            localStorage.setItem("loggedIn", false);
             dispatch({
                 type: 'LOGGED_OUT'
             })
