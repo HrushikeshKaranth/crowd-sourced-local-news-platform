@@ -1,19 +1,22 @@
 import React, { useContext, useState } from 'react'
-import Header from './Header'
 import axios from 'axios'
 import { GlobalContext } from '../context/GlobalState';
 import { useNavigate } from 'react-router-dom';
+import '../styles/authentication.css';
 
 function Authentication() {
 
   const { loggedIn } = useContext(GlobalContext);
+
   let nav = useNavigate();
 
-  const [username, setUsername] = useState()
-  const [password, setPassword] = useState()
+  const [toggle, setToggle] = useState(true);
 
-  const [toggle, setToggle] = useState(true)
+  // for login
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
+  // for registration
   const [register, setRegister] = useState({
     username: "",
     email: "",
@@ -22,6 +25,7 @@ function Authentication() {
     usertype: "user"
   })
 
+  // handling input changes
   const handleChange = (e) => {
     setRegister((prevalue) => {
       return {
@@ -37,8 +41,8 @@ function Authentication() {
   //----- 
 
   // user login
-  function login(){
-    const loginDetails={
+  function login() {
+    const loginDetails = {
       username, password
     }
     const config = {
@@ -46,24 +50,24 @@ function Authentication() {
         'Content-Type': 'application/json'
       }
     }
-    axios.post('/api/v1/login', loginDetails, config)
-    .then((res)=>{
-      console.log(res);
-      alert('Login Successful 🤗!');
-      // const user = res.data.data;
-      loggedIn(res.data.data);
-      nav('/');
-      // const userDetails={
-      //   username: res.data.data.username
-      //   userid: res.data.data._id
-      //   usertype: res.data.data.usertype
-      // }
-    })
-    .catch((err)=>{
-      console.log(err);
-      alert(err.response.data.error)
-    })
+    if (username === "" || password === "") {
+      alert('Enter both Username and Password 🤨!');
+    }
+    else {
+      axios.post('/api/v1/login', loginDetails, config)
+        .then((res) => {
+          console.log(res);
+          alert('Login Successful 🤗!');
+          loggedIn(res.data.data);
+          nav('/');
+        })
+        .catch((err) => {
+          console.log(err);
+          alert(err.response.data.error)
+        })
+    }
   }
+
   // register user
   function registerUser() {
     if (register.username === "" | register.email === "" | register.password === "" | register.cpassword === "") {
@@ -92,20 +96,13 @@ function Authentication() {
         })
         .catch((err) => {
           console.log(err);
-          alert(err.response.data.error)
-          // alert("Unable to Register User at this time 😢");
+          alert("Unable to Register User at this time 😢");
         })
     }
   }
 
-  console.log(register);
-  console.log(username);
-  console.log(password);
-
-
   return (
     <div className='auth-section'>
-      <Header />
       <div className='subauth-section'>
         <div className='auth-button-section'>
           <button className={toggle ? 'button-selected auth-toggle-buttons' : 'rm-button auth-toggle-buttons'} onClick={() => setToggle(true)}>Login</button>
@@ -115,19 +112,19 @@ function Authentication() {
           {
             toggle ?
               < div className='fill-section' >
-                <span className='auth-header'>Enter Login Details</span>
+                <span className='auth-header'>Login</span>
                 <input type="text" name='username' placeholder='Enter Username' value={username} onChange={(e) => { setUsername(e.target.value) }} />
                 <input type="password" name='password' placeholder='Enter Password' value={password} onChange={(e) => { setPassword(e.target.value) }} />
-                <button className='l-button' onClick={login}>Login</button>
+                <button className='l-button' onClick={login}>Submit</button>
               </div >
               :
               <div className='fill-section'>
-                <span className='auth-header'>Fill Details</span>
+                <span className='auth-header'>Register</span>
                 <input type="text" name='username' placeholder='Enter Username' value={register.username} onChange={handleChange} />
                 <input type="text" name='email' placeholder='Enter Email' value={register.email} onChange={handleChange} />
                 <input type="password" name='password' placeholder='Enter Password' value={register.password} onChange={handleChange} />
                 <input type="password" name='cpassword' placeholder='Confirm Password' value={register.cpassword} onChange={handleChange} />
-                <button className='l-button' onClick={registerUser}>Register</button>
+                <button className='l-button' onClick={registerUser}>Submit</button>
               </div>
           }
         </div>

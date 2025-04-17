@@ -1,30 +1,15 @@
 const express = require('express');
 const router = express.Router();
-// const { 
-//     getTransactions, 
-//     addTransactions, 
-//     deleteTransactions,
-//     runConnectionTest
-//     } = require('../controllers/transactionController')
 
-// router
-//     .route('/')
-//     .get(getTransactions)
-//     .post(addTransactions);
-
-// router
-//     .route('/:id')
-//     .delete(deleteTransactions);
-
-// router
-//     .route('/test')
-//     .get(runConnectionTest);
-
+// importing functions from controller
 const {
     registerUser,
-    loginUser
+    loginUser,
+    uploadNews,
+    getNews
 } = require('../controllers/controllers')
 
+// mapping routes and controller functions
 router
     .route('/register')
     .post(registerUser)
@@ -32,5 +17,10 @@ router
 router
     .route('/login')
     .post(loginUser)
+
+router
+    .route('/news')
+    .post(uploadNews)
+    .get(getNews)
 
 module.exports = router;

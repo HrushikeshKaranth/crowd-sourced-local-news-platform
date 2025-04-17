@@ -1,0 +1,30 @@
+
+.username {
+    font-size: 1rem;
+    font-weight: 800;
+    height: 4rem;
+    border: .1rem solid var(--linecolor);
+    color: #6464f0;
+    border-radius: .3rem;
+    min-width: 5.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: .5rem;
+  }
+  
+  .logout-button {
+    border: .1rem solid var(--linecolor);
+    border-radius: .3rem;
+    color: var(--textcolor);
+    cursor: pointer;
+    height: 1.5rem;
+    font-size: .7rem;
+  }
+  
+  .logout-button:hover {
+    color: white;
+    background-color: #6464f0;
+  }
+  

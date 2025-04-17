@@ -1,0 +1,97 @@
+auth-section{
+    margin-top: 10rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5rem;
+    color: var(--textcolor);
+    /* background-color: #6464f023; */
+    /* background-color: var(--bg2); */
+    /* height: 97vh; */
+    /* background-color: var(--bg2); */
+  }
+  .subauth-section{
+    background-color: var(--bg3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    width: 25%;
+    border-radius: .5rem;
+  }
+  
+  .auth-toggle-section{
+    border-radius: .5rem;
+    border: .1rem solid var(--linecolor);
+    padding: .5rem;
+    width: 100%;
+    background-color: var(--bg2);
+  }
+  
+  .auth-header{
+    background-color: var(--bg2);
+    /* border-radius: .5rem; */
+  }
+  .fill-section{
+    border-radius: .5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    background-color: var(--bg2);
+    padding: 1rem;
+  }
+  
+  .l-button{
+    background-color: var(--bg3);
+    color: var(--textcolor);
+    /* font-size: 1.2rem; */
+    /* height: 5rem; */
+    border: .1rem solid var(--linecolor);
+    text-align: center;
+    width: 30%;
+    height: 1.5rem;
+    border-radius: .3rem;
+  }
+  .l-button:hover{
+    cursor: pointer;
+    /* border-left: .5rem solid rgb(100, 100, 240); */
+    /* border-right: .5rem solid rgb(100, 100, 240); */
+    border-left: .5rem solid var(--linecolor);
+    border-right: .5rem solid var(--linecolor);
+    transition: 0.1s;
+  }
+  
+  .auth-button-section{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* border: .1rem solid var(--linecolor); */
+    width: 100%;
+  }
+  .auth-toggle-buttons{
+    border: none ;
+    width: 20%;
+    cursor: pointer;
+    background-color: var(--bg2);
+    border-radius: .3rem;
+    height: 1.5rem;
+  }
+  
+  .rm-button{
+    background-color: var(--bg2);
+    color: var(--textcolor);
+    border: .1rem solid var(--linecolor);
+    height: 1.5rem;
+    font-size: .7rem;
+  }
+  /* .rm-button:hover{
+    color:#6464f0;
+  } */
+  .button-selected{
+    background-color: #6464f0;
+    color: var(--textcolor);
+  }

@@ -1,9 +1,10 @@
 import React, { useContext } from 'react'
 import { GlobalContext } from '../context/GlobalState';
+import '../styles/user.css'
 
 export default function User() {
   const { username, loggedOut } = useContext(GlobalContext);
-  function logout(){
+  function logout() {
     loggedOut();
   }
   return (

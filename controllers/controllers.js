@@ -1,134 +1,35 @@
 const { json } = require('express');
 const Users = require('../models/Users')
 const News = require('../models/News')
-// const Transaction = require('../models/Transaction');
 
-
-// @desc Get all transactions
-// @route GET /api/v1/transactions
-// @access Public
-// exports.getTransactions = async (req, res, next) => {
-//     try {
-//         const transactions = await Transaction.find();
-
-//         return res.status(200).json({
-//             success: true,
-//             count: transactions.length,
-//             data: transactions
-//         });
-//     } catch (error) {
-//         return res.status(500).json({
-//             success: false,
-//             error: 'Server error'
-//         });
-//     }
-// }
-
-// @desc Add transaction
-// @route POST /api/v1/transactions
-// @access Public
-// exports.addTransactions = async (req, res, next) => {
-//     try {
-//         const { text, amount } = req.body;
-
-//         const transaction = await Transaction.create(req.body);
-
-//         return res.status(201).json({
-//             success: true,
-//             data: transaction
-//         });
-//     } catch (error) {
-//         if (error.name === 'ValidationError') {
-//             const messages = Object.values(error.errors).map(val => val.message);
-//             return res.status(400).json({
-//                 success: false,
-//                 error: messages
-//             })
-//         }
-//         else {
-//             return res.status(500).json({
-//                 success: false,
-//                 error: 'Server error'
-//             })
-//         }
-//         // console.log(error.errors.amount.properties.message);
-//     }
-// }
-
-// @desc Delete transaction
-// @route DELETE /api/v1/transactions/:id
-// @access Public
-// exports.deleteTransactions = async (req, res, next) => {
-//     try {
-//         const transaction = await Transaction.findByIdAndDelete(req.params.id);
-//         console.log(transaction);
-//         if (!transaction) {
-//             return res.status(404).json({
-//                 success: false,
-//                 error: 'No transaction found'
-//             });
-//         }
-//         else{
-//             return res.status(200).json({
-//                 success: true,
-//                 data: {}
-//             })
-//         }
-//     } catch (error) {
-//         return res.status(500).json({
-//             success: false,
-//             error: 'Server error'
-//         })
-//     }
-// }
-
-
-// @desc Test Connection 
-// @route TEST /api/v1/transactions/test
-// @access Public
-exports.runConnectionTest = async (req, res, next) => {
-    try {
-        return res.status(200).json({
-            success: true,
-            msg: 'Server is Connected!'
-        })
-    }
-    catch{
-        return res.status(500).json({
-            success:false,
-            msg: 'Connection Failed!'
-        })
-    }
-}
-
-// @desc login User
+// @desc User login
 // @route POST /api/v1/login
 // @access Public
 exports.loginUser = async (req, res, next) => {
     try {
-        const { username, password } = req.body;
+        const { username, password } = req.body; // request body
 
-        const userExists = await Users.find({ "username": username })
-        console.log(userExists);
-        
-        if(userExists[0] == null){
+        const userExists = await Users.find({ "username": username }) // checking if username exists in database
+
+        if (userExists[0] == null) { // if username doesn't exist in database
             return res.status(400).json({
                 success: false,
                 error: 'Username doesnot exists 😢!'
             })
         }
-        else if(userExists[0].password != password){
+        else if (userExists[0].password != password) { // username exists but password is wrong
             return res.status(400).json({
                 success: false,
                 error: 'Wrong password 😢!'
             })
         }
-        else{
-            return res.status(200).json({
+        else {
+            return res.status(200).json({ // success message
                 success: true,
                 data: userExists[0]
             })
         }
+        // error handling
     } catch (error) {
         if (error.name === 'ValidationError') {
             const messages = Object.values(error.errors).map(val => val.message);
@@ -151,33 +52,117 @@ exports.loginUser = async (req, res, next) => {
 // @access Public
 exports.registerUser = async (req, res, next) => {
     try {
-        const { username, email, password, usertype } = req.body;
+        const { username, email, password, usertype } = req.body; // req body
 
+        // checking if same username exists
         const userExists = await Users.find({ "username": username })
-        console.log(userExists);
-        
-        if(userExists[0] != null){
+
+        // if same username exists
+        if (userExists[0] != null) {
             return res.status(400).json({
                 success: false,
                 error: 'Username already exists 😢!'
             })
         }
+
+        // checking if same email exists
         const emailExists = await Users.find({ "email": email })
-        console.log(emailExists);
-        
-        if(emailExists[0] != null){
+
+        // if same email exists
+        if (emailExists[0] != null) {
             return res.status(400).json({
                 success: false,
                 error: 'Email already exists 😢!'
             })
         }
-        // const transaction = await Transaction.create(req.body);
+
+        // register user [save user details to database]
         const user = await Users.create(req.body);
 
+        // returning success message
         return res.status(201).json({
             success: true,
             data: user
         });
+        // error handling
+    } catch (error) {
+        if (error.name === 'ValidationError') {
+            const messages = Object.values(error.errors).map(val => val.message);
+            return res.status(400).json({
+                success: false,
+                error: messages
+            })
+        }
+        else {
+            return res.status(500).json({
+                success: false,
+                error: 'Server error'
+            })
+        }
+    }
+}
+
+
+// @desc Upload News
+// @route POST /api/v1/news
+// @access Public
+exports.uploadNews = async (req, res, next) => {
+    try {
+        const { username, userid, title, description, imagelink, adminapproved } = req.body;
+
+        // checking if news title already exists in database
+        const newsExists = await News.find({ "title": title })
+
+        // if news title already exists
+        if (newsExists[0] != null) {
+            return res.status(400).json({
+                success: false,
+                error: 'News title already exists 😢!'
+            })
+        }
+
+        // save news in database
+        const news = await News.create(req.body);
+
+        // return success message
+        return res.status(201).json({
+            success: true,
+            data: news
+        });
+        // error handling
+    } catch (error) {
+        if (error.name === 'ValidationError') {
+            const messages = Object.values(error.errors).map(val => val.message);
+            return res.status(400).json({
+                success: false,
+                error: messages
+            })
+        }
+        else {
+            return res.status(500).json({
+                success: false,
+                error: 'Server error'
+            })
+        }
+    }
+}
+
+// @desc Get News
+// @route get /api/v1/news
+// @access Public
+exports.getNews = async (req, res, next) => {
+    try {
+
+        // retrieving news from database
+        const news = await News.find()
+
+        // returning retrieved news 
+        return res.status(200).json({
+            success: true,
+            count: news.length,
+            data: news
+        });
+        // error handling
     } catch (error) {
         if (error.name === 'ValidationError') {
             const messages = Object.values(error.errors).map(val => val.message);
