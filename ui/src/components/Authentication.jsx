@@ -56,7 +56,7 @@ function Authentication() {
     else {
       axios.post('/api/v1/login', loginDetails, config)
         .then((res) => {
-          console.log(res);
+          // console.log(res);
           alert('Login Successful 🤗!');
           loggedIn(res.data.data);
           nav('/');
