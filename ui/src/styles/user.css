@@ -1,9 +1,39 @@
 
+:root {
+  --mainbg: #845EC2;
+  --subbg: #B39CD0;
+  --light: #FBEAFF;
+  --btn: #00C9A7;
+  --text: #3f3f3f;
+  --errmsg: #C34A36;
+  --successmsg: #49887d;
+  --textcolor: #e3e3e3;
+  --linecolor: #3c4043;
+  --bg1: #202124;
+  --bg2: #1f1f1f;
+  --bg3: #292a2d;
+}
+
 .username {
     font-size: 1rem;
     font-weight: 400;
     height: 4rem;
     border: .1rem solid var(--linecolor);
+    color: var(--textcolor);
+    border-radius: .3rem;
+    min-width: 5.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: .5rem;
+  }
+  
+  .username-admin{
+    font-size: 1rem;
+    font-weight: 400;
+    height: 4rem;
+    border: .1rem solid var(--errmsg);
     color: var(--textcolor);
     border-radius: .3rem;
     min-width: 5.5rem;

@@ -20,6 +20,7 @@
     justify-content: space-evenly;
     padding: 0rem 3rem 0rem 3rem;
     margin-top: 9rem;
+    width: 100%;
 }
 
 .newsList {
@@ -33,6 +34,7 @@
     background-color: #1f1f1f;
     border-radius: 1rem;
     text-align: justify;
+    position: relative;
 }
 
 .newsTitle {
@@ -110,6 +112,7 @@
     background-color: #1f1f1f;
     font-size: .8rem;
     font-weight: 500;
+    width: 100%;
 }
 
 .newsBy {
@@ -117,5 +120,19 @@
     background-color: #1f1f1f;
     font-size: .8rem;
     font-weight: 500;
+    width: 100%;
+
+}
+
+.delete-news-button{
+    border: .1rem solid var(--linecolor);
+    border-radius: .3rem;
+    color: var(--textcolor);
+    cursor: pointer;
+    height: 1.5rem;
+    font-size: .7rem;
+    position: absolute;
+    top: 0;
+    right: 0;
 
 }

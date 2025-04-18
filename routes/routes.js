@@ -6,7 +6,8 @@ const {
     registerUser,
     loginUser,
     uploadNews,
-    getNews
+    getNews,
+    deleteNews
 } = require('../controllers/controllers')
 
 // mapping routes and controller functions
@@ -22,5 +23,9 @@ router
     .route('/news')
     .post(uploadNews)
     .get(getNews)
+    
+router
+    .route('/news/:id')
+    .delete(deleteNews)
 
 module.exports = router;

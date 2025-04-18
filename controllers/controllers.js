@@ -154,13 +154,52 @@ exports.getNews = async (req, res, next) => {
     try {
 
         // retrieving news from database
-        const news = await News.find().sort({postedAt:-1});
+        const news = await News.find().sort({ postedAt: -1 });
 
         // returning retrieved news 
         return res.status(200).json({
             success: true,
             count: news.length,
             data: news
+        });
+        // error handling
+    } catch (error) {
+        if (error.name === 'ValidationError') {
+            const messages = Object.values(error.errors).map(val => val.message);
+            return res.status(400).json({
+                success: false,
+                error: messages
+            })
+        }
+        else {
+            return res.status(500).json({
+                success: false,
+                error: 'Server error'
+            })
+        }
+    }
+}
+
+// @desc Delete News
+// @route delete /api/v1/news
+// @access Public
+exports.deleteNews = async (req, res, next) => {
+    try {
+
+        // const {id} = req.body;
+        // console.log(req.params.id);
+        // deleting news from database
+        const news = await News.findByIdAndDelete(req.params.id);
+        // console.log(news);
+
+        if (!news) return res.status(404).json({ message: "Not found" });
+        // res.json({ message: "Deleted successfully", news });
+
+        // returning success message 
+        return res.status(200).json({
+            success: true,
+            count: news.length,
+            message: "Deleted successfully"
         });
         // error handling
     } catch (error) {

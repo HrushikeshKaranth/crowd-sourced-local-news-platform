@@ -6,7 +6,8 @@ const initialState = {
     isLoggedIn: false,
     user: {},
     username: "user123",
-    userid: ''
+    userid: '',
+    usertype: "user"
 }
 
 // Create context
@@ -58,6 +59,7 @@ export const GlobalProvider = ({ children }) => {
             isLoggedIn: state.isLoggedIn,
             username: state.username,
             userid: state.userid,
+            usertype: state.usertype,
             reRender,
             loggedIn,
             loggedOut,

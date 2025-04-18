@@ -6,7 +6,8 @@ export default (state, action) => {
                 isLoggedIn: true,
                 user: action.payload,
                 username: action.payload.username,
-                userid: action.payload._id
+                userid: action.payload._id,
+                usertype: action.payload.usertype
             }
         case 'LOGGED_OUT':
             return {
@@ -14,7 +15,8 @@ export default (state, action) => {
                 isLoggedIn: false,
                 user: {},
                 username: "",
-                userid: ""
+                userid: "",
+                usertype: ""
             }
         default:
             return state
