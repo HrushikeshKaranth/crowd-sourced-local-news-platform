@@ -1,10 +1,10 @@
 
 .username {
     font-size: 1rem;
-    font-weight: 800;
+    font-weight: 400;
     height: 4rem;
     border: .1rem solid var(--linecolor);
-    color: #6464f0;
+    color: var(--textcolor);
     border-radius: .3rem;
     min-width: 5.5rem;
     display: flex;

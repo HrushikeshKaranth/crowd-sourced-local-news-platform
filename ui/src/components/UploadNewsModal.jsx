@@ -4,7 +4,7 @@ import axios from 'axios';
 
 export default function UploadNewsModal(props) {
 
-    const { username, userid } = useContext(GlobalContext);
+    const { username, userid, setReRender, reRender } = useContext(GlobalContext);
 
     let [data, setData] = useState({
         title: "",
@@ -40,12 +40,14 @@ export default function UploadNewsModal(props) {
                 .then((res) => {
                     alert("News Saved 👍");
                     handleClose();
-                    window.location.reload();
+                    setReRender(reRender+1);
+                    setData({...data, title:"", description:"", imagelink:""});
+                    // window.location.reload();
                 })
                 .catch((err) => {
                     console.error(err);
-                    // alert(err.response.data.error)
-                    alert("Unable to Upload News at this time 😢");
+                    alert(err.response.data.error)
+                    // alert("Unable to Upload News at this time 😢");
                 })
         }
     }

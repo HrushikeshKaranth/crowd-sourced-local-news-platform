@@ -18,7 +18,7 @@ export default function ListTopNews() {
                 data.map((news) => (
                     <div className='newsList' key={news.title}>
                         <div className='newsTitle'> {news.title} </div>
-                        <div> <img className='newsImage' src={news.image} alt={news.title} /> </div>
+                        <div className='newsImage'> <img className='newsImage' src={news.image} alt={news.title} /> </div>
                         <div className='newsDesc'> {news.description} </div>
                         <div className='newsDate'> Published at: {news.publishedAt}</div>
                         <div className='newsBy'> Publisher: {news.source.name} </div>

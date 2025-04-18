@@ -1,4 +1,4 @@
-import React, { createContext, useReducer } from "react";
+import React, { createContext, useReducer, useState } from "react";
 import AppReducer from './AppReducer'
 
 // Initial state
@@ -15,7 +15,7 @@ export const GlobalContext = createContext(initialState);
 // Provider component
 export const GlobalProvider = ({ children }) => {
     const [state, dispatch] = useReducer(AppReducer, initialState);
-
+    const [reRender, setReRender] = useState(0);
     // Actions
 
     // login
@@ -58,8 +58,10 @@ export const GlobalProvider = ({ children }) => {
             isLoggedIn: state.isLoggedIn,
             username: state.username,
             userid: state.userid,
+            reRender,
             loggedIn,
-            loggedOut
+            loggedOut,
+            setReRender
         }}>
             {children}
         </GlobalContext.Provider>

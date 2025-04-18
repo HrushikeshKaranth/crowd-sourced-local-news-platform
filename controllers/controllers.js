@@ -154,7 +154,7 @@ exports.getNews = async (req, res, next) => {
     try {
 
         // retrieving news from database
-        const news = await News.find()
+        const news = await News.find().sort({postedAt:-1});
 
         // returning retrieved news 
         return res.status(200).json({
