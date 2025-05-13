@@ -7,7 +7,7 @@ export default function ListNews() {
     return (
         <div className='news'>
             <ListUserNews />
-            <ListTopNews />
+            {/* <ListTopNews /> */}
         </div>
     )
 }

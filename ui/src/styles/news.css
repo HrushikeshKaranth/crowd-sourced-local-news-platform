@@ -37,11 +37,11 @@
     border-radius: 1rem;
     text-align: justify;
     position: relative;
-    transition: transform 0.1s ease-in-out;
+    transition: transform 0.05s ease-in-out;
     /* box-shadow:  .5rem .5rem .5rem rgba(121, 120, 120, 0.15); */
 }
 .newsList:hover{
-    /* transform: scale(1.02); */
+    transform: scale(1.02);
     /* box-shadow: 0 4px 12px rgba(117, 117, 117, 0.15); */
 }
 .newsTitle {
